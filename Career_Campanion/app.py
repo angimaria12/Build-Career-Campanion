@@ -46,7 +46,7 @@ st.set_page_config(
 # Application heading
 
 st.title("🎯 Career Companion")
-st.subheader("Your AI-Powered Career Advisor")
+st.subheader("Your AI-Powered Career Advisor.")
 
 st.write(
     "Upload your resume and discover job opportunities "
