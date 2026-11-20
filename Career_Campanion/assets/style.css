@@ -1,0 +1,507 @@
+
+/* ==========================================
+   🎯 CAREER COMPANION - MAIN BACKGROUND
+========================================== */
+
+.stApp {
+    background:
+        radial-gradient(
+            circle at 10% 15%,
+            rgba(129, 140, 248, 0.40),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(45, 212, 191, 0.30),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(192, 132, 252, 0.30),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #111c4e,
+            #302b75,
+            #164e63
+        );
+
+    background-attachment: fixed;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+
+/* ==========================================
+   ✨ FLOATING EMOJI DECORATIONS
+========================================== */
+
+.stApp::before {
+    content:
+        "✨       🚀       💜       🎯       🌟       💼       🧠       📄       ⭐";
+
+    position: fixed;
+    top: 12%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    font-size: 27px;
+    line-height: 145px;
+    letter-spacing: 25px;
+    text-align: center;
+
+    opacity: 0.13;
+    pointer-events: none;
+    z-index: 0;
+
+    white-space: normal;
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   📌 MAIN CONTENT
+========================================== */
+
+[data-testid="stAppViewContainer"] {
+    position: relative;
+    z-index: 1;
+}
+
+.block-container {
+    max-width: 1150px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+
+/* ==========================================
+   🎨 HERO SECTION
+========================================== */
+
+.hero-container {
+    padding: 45px;
+    border-radius: 25px;
+
+    background: linear-gradient(
+        120deg,
+        rgba(30, 41, 100, 0.94),
+        rgba(91, 65, 170, 0.88),
+        rgba(13, 116, 112, 0.90)
+    );
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.25),
+        inset 0 1px 1px rgba(255,255,255,0.15);
+}
+
+
+/* Hero title */
+
+.hero-container h1 {
+    color: #FFFFFF !important;
+    font-size: 45px !important;
+    font-weight: 800 !important;
+}
+
+
+/* Hero subtitle */
+
+.hero-container h2 {
+    color: #FFFFFF !important;
+}
+
+
+/* Hero description */
+
+.hero-description {
+    color: #E0E7FF !important;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   🚀 FEATURE CARDS
+========================================== */
+
+.hero-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 17px;
+    min-height: 65px;
+
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 15px;
+
+    color: #FFFFFF !important;
+    font-size: 14px;
+    font-weight: 600;
+
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+.feature-icon {
+    font-size: 27px;
+    min-width: 35px;
+    text-align: center;
+}
+
+
+/* ==========================================
+   🤍 MAIN TEXT COLOURS
+========================================== */
+
+/* Main application text */
+
+.stApp {
+    color: #FFFFFF;
+}
+
+/* All headings */
+
+.stApp h1,
+.stApp h2,
+.stApp h3,
+.stApp h4,
+.stApp h5 {
+    color: #FFFFFF !important;
+}
+
+/* Markdown paragraphs */
+
+.stMarkdown p,
+.stMarkdown li,
+.stMarkdown strong {
+    color: #F8FAFC !important;
+    line-height: 1.8;
+}
+
+/* Bullet points and roadmap */
+
+.stMarkdown ul li,
+.stMarkdown ol li {
+    color: #F8FAFC !important;
+    line-height: 1.9;
+}
+
+/* Widget labels */
+
+.stApp [data-testid="stWidgetLabel"] p {
+    color: #FFFFFF !important;
+}
+
+
+/* ==========================================
+   📄 RESUME UPLOAD SECTION
+========================================== */
+
+[data-testid="stFileUploader"] {
+    background: rgba(255,255,255,0.97) !important;
+    border: 2px dashed #A78BFA;
+    border-radius: 18px;
+    padding: 20px;
+}
+
+/* Dark text inside white upload box */
+
+[data-testid="stFileUploader"] label,
+[data-testid="stFileUploader"] p,
+[data-testid="stFileUploader"] span,
+[data-testid="stFileUploader"] small {
+    color: #26334A !important;
+}
+
+/* Upload button */
+
+[data-testid="stFileUploader"] button {
+    color: #26334A !important;
+    border: 1px solid #D1D5DB;
+}
+
+
+/* ==========================================
+   🔵 INFORMATION MESSAGE
+========================================== */
+
+[data-testid="stAlert"] {
+    background-color: #E8F1FF !important;
+    border-radius: 12px;
+}
+
+/* Blue text in information boxes */
+
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] span {
+    color: #174EA6 !important;
+}
+
+
+/* ==========================================
+   ✅ SUCCESS MESSAGE
+========================================== */
+
+[data-testid="stAlert"][kind="success"] p,
+[data-testid="stAlert"][kind="success"] span {
+    color: #146C43 !important;
+}
+
+
+/* ==========================================
+   💜 ANALYZE BUTTON
+========================================== */
+
+.stButton > button {
+    background: linear-gradient(
+        90deg,
+        #7C3AED,
+        #0D9488
+    );
+
+    color: #FFFFFF !important;
+    border: none;
+    border-radius: 12px;
+
+    min-height: 48px;
+    font-weight: 700;
+
+    transition: 0.3s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(124,58,237,0.35);
+    color: #FFFFFF !important;
+}
+
+
+/* ==========================================
+   📂 EXPANDER SECTIONS
+========================================== */
+
+[data-testid="stExpander"] {
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px;
+}
+
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary p {
+    color: #FFFFFF !important;
+}
+
+
+/* ==========================================
+   📊 PROGRESS BAR
+========================================== */
+
+.stProgress > div > div {
+    background-color: #14B8A6;
+}
+
+
+/* ==========================================
+   🌟 FOOTER
+========================================== */
+
+[data-testid="stCaptionContainer"] {
+    color: #E2E8F0 !important;
+}
+
+[data-testid="stCaptionContainer"] p {
+    color: #E2E8F0 !important;
+}
+
+
+/* ==========================================
+   ➖ DIVIDERS
+========================================== */
+
+hr {
+    border-color: rgba(255,255,255,0.30) !important;
+}
+
+
+/* ==========================================
+   📱 RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width: 700px) {
+
+    .hero-container {
+        padding: 25px;
+    }
+
+    .hero-container h1 {
+        font-size: 32px !important;
+    }
+
+    .hero-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 430px) {
+
+    .hero-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================
+   FIX LEARNING ROADMAP TEXT VISIBILITY
+===================================== */
+
+/* Expander heading */
+[data-testid="stExpander"] details > summary {
+    background: rgba(30, 41, 90, 0.95) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255,255,255,0.35) !important;
+    border-radius: 12px !important;
+}
+
+/* Expander heading text */
+[data-testid="stExpander"] details > summary p,
+[data-testid="stExpander"] details > summary span,
+[data-testid="stExpander"] details > summary div {
+    color: #FFFFFF !important;
+}
+
+/* Expanded content area */
+[data-testid="stExpander"] details > div {
+    background: rgba(35, 45, 105, 0.90) !important;
+    color: #FFFFFF !important;
+}
+
+/* All text inside roadmap expanders */
+[data-testid="stExpander"] p,
+[data-testid="stExpander"] label,
+[data-testid="stExpander"] span,
+[data-testid="stExpander"] li {
+    color: #FFFFFF !important;
+}
+
+/* Learning resource links */
+[data-testid="stExpander"] a {
+    color: #7DD3FC !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+}
+
+/* Checkbox labels */
+[data-testid="stExpander"] [data-testid="stWidgetLabel"] p {
+    color: #FFFFFF !important;
+}
+
+/* Hover effect */
+[data-testid="stExpander"] details > summary:hover {
+    background: rgba(80, 80, 170, 0.95) !important;
+}
+
+/* Rounded corners */
+[data-testid="stExpander"] details {
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+
+
+/* =====================================
+   CHATBOT INPUT TEXT FIX
+===================================== */
+
+/* Chat input box */
+[data-testid="stChatInput"] textarea {
+    color: #1F2937 !important;
+    background-color: #FFFFFF !important;
+    -webkit-text-fill-color: #1F2937 !important;
+    caret-color: #1F2937 !important;
+    font-size: 16px !important;
+}
+
+/* Placeholder text */
+[data-testid="stChatInput"] textarea::placeholder {
+    color: #64748B !important;
+    -webkit-text-fill-color: #64748B !important;
+    opacity: 1 !important;
+}
+
+/* =====================================
+   CHATBOT RESPONSE TEXT FIX
+===================================== */
+
+/* Assistant response text */
+[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] li,
+[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] span {
+    color: #FFFFFF !important;
+}
+
+/* Response headings */
+[data-testid="stChatMessage"] h1,
+[data-testid="stChatMessage"] h2,
+[data-testid="stChatMessage"] h3,
+[data-testid="stChatMessage"] h4 {
+    color: #FFFFFF !important;
+}
+
+/* Response tables */
+[data-testid="stChatMessage"] table,
+[data-testid="stChatMessage"] th,
+[data-testid="stChatMessage"] td {
+    color: #FFFFFF !important;
+    border-color: rgba(255,255,255,0.4) !important;
+}
+
+/* Table headings */
+[data-testid="stChatMessage"] th {
+    background-color: rgba(255,255,255,0.15) !important;
+    font-weight: 700 !important;
+}
+
+/* Links inside chatbot responses */
+[data-testid="stChatMessage"] a {
+    color: #7DD3FC !important;
+    text-decoration: underline !important;
+}
+
+/* Code blocks */
+[data-testid="stChatMessage"] pre,
+[data-testid="stChatMessage"] code {
+    color: #FFFFFF !important;
+}
+
+/* =====================================
+   CHATBOT VISUAL IMPROVEMENT
+===================================== */
+
+[data-testid="stChatInput"] {
+    border-radius: 14px !important;
+}
+
+[data-testid="stChatMessage"] {
+    border-radius: 14px !important;
+}
+ 

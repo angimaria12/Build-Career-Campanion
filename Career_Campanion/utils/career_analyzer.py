@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 from typing import List
@@ -32,10 +32,13 @@ class CareerReport(BaseModel):
 
 # Initialize the LLM
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-3.8-flash",
+
+from langchain_groq import ChatGroq
+
+llm = ChatGroq(
+    model="openai/gpt-oss-120b",
     temperature=0.2,
-    google_api_key=os.getenv("GOOGLE_API_KEY")
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 
