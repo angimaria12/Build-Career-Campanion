@@ -1,507 +1,368 @@
 
 /* ==========================================
-   🎯 CAREER COMPANION - MAIN BACKGROUND
+   CAREER COMPANION - PROFESSIONAL THEME
+   Colour Palette: Charcoal, Ivory & Sage Green
 ========================================== */
+
+/* MAIN APPLICATION BACKGROUND */
 
 .stApp {
-    background:
-        radial-gradient(
-            circle at 10% 15%,
-            rgba(129, 140, 248, 0.40),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(45, 212, 191, 0.30),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(192, 132, 252, 0.30),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #111c4e,
-            #302b75,
-            #164e63
-        );
-
-    background-attachment: fixed;
-    font-family: 'Inter', sans-serif;
-    position: relative;
+    background: linear-gradient(
+        135deg,
+        #171C1A 0%,
+        #202824 50%,
+        #29342D 100%
+    );
+    color: #F4F3EE;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* REMOVE DECORATIVE BACKGROUND EFFECTS */
 
-/* ==========================================
-   ✨ FLOATING EMOJI DECORATIONS
-========================================== */
-
-.stApp::before {
-    content:
-        "✨       🚀       💜       🎯       🌟       💼       🧠       📄       ⭐";
-
-    position: fixed;
-    top: 12%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    font-size: 27px;
-    line-height: 145px;
-    letter-spacing: 25px;
-    text-align: center;
-
-    opacity: 0.13;
-    pointer-events: none;
-    z-index: 0;
-
-    white-space: normal;
-    overflow: hidden;
+.stApp::before,
+.stApp::after {
+    content: none !important;
+    display: none !important;
 }
 
-
-/* ==========================================
-   📌 MAIN CONTENT
-========================================== */
-
-[data-testid="stAppViewContainer"] {
-    position: relative;
-    z-index: 1;
-}
+/* MAIN CONTENT AREA */
 
 .block-container {
-    max-width: 1150px;
     padding-top: 2rem;
     padding-bottom: 3rem;
+    max-width: 1250px;
 }
 
-
 /* ==========================================
-   🎨 HERO SECTION
+   HERO SECTION
 ========================================== */
 
 .hero-container {
-    padding: 45px;
-    border-radius: 25px;
-
     background: linear-gradient(
-        120deg,
-        rgba(30, 41, 100, 0.94),
-        rgba(91, 65, 170, 0.88),
-        rgba(13, 116, 112, 0.90)
+        135deg,
+        #252E29,
+        #35443A
     );
-
-    border: 1px solid rgba(255,255,255,0.25);
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,0.25),
-        inset 0 1px 1px rgba(255,255,255,0.15);
+    border: 1px solid rgba(190, 205, 185, 0.18);
+    border-radius: 18px;
+    padding: 38px;
+    margin-bottom: 35px;
+    color: #F7F6F0;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.20);
 }
-
-
-/* Hero title */
 
 .hero-container h1 {
-    color: #FFFFFF !important;
-    font-size: 45px !important;
-    font-weight: 800 !important;
+    color: #F7F6F0;
+    font-size: 2.7rem;
+    font-weight: 700;
+    letter-spacing: -1px;
 }
 
-
-/* Hero subtitle */
-
-.hero-container h2 {
-    color: #FFFFFF !important;
+.hero-container h2,
+.hero-container h3 {
+    color: #DCE5D8;
 }
 
-
-/* Hero description */
-
-.hero-description {
-    color: #E0E7FF !important;
-    font-size: 16px;
+.hero-container p {
+    color: #D2D8D0;
+    font-size: 1.05rem;
     line-height: 1.8;
 }
 
-
-/* ==========================================
-   🚀 FEATURE CARDS
-========================================== */
+/* HERO FEATURE CARDS */
 
 .hero-features {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    margin-top: 30px;
+    margin-top: 28px;
 }
 
 .feature-item {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-
-    padding: 17px;
-    min-height: 65px;
-
-    background: rgba(255,255,255,0.13);
-    border: 1px solid rgba(255,255,255,0.22);
-    border-radius: 15px;
-
-    color: #FFFFFF !important;
-    font-size: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(210, 225, 205, 0.18);
+    border-radius: 12px;
+    padding: 22px;
+    color: #F4F3EE;
     font-weight: 600;
-
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
 }
 
 .feature-item:hover {
-    background: rgba(255,255,255,0.25);
-    transform: translateY(-5px);
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+    background: rgba(160, 185, 150, 0.14);
+    border-color: #A7B99F;
+    transform: translateY(-3px);
 }
 
 .feature-icon {
-    font-size: 27px;
-    min-width: 35px;
-    text-align: center;
+    color: #B5C7A9;
+    margin-right: 10px;
 }
 
-
 /* ==========================================
-   🤍 MAIN TEXT COLOURS
+   HEADINGS AND TEXT
 ========================================== */
 
-/* Main application text */
-
-.stApp {
-    color: #FFFFFF;
+h1, h2, h3, h4, h5 {
+    color: #F2F1EA !important;
+    font-weight: 650;
 }
 
-/* All headings */
-
-.stApp h1,
-.stApp h2,
-.stApp h3,
-.stApp h4,
-.stApp h5 {
-    color: #FFFFFF !important;
+p, label, li {
+    color: #D9DED8;
 }
 
-/* Markdown paragraphs */
-
-.stMarkdown p,
-.stMarkdown li,
-.stMarkdown strong {
-    color: #F8FAFC !important;
-    line-height: 1.8;
+.stMarkdown {
+    color: #D9DED8;
 }
 
-/* Bullet points and roadmap */
-
-.stMarkdown ul li,
-.stMarkdown ol li {
-    color: #F8FAFC !important;
-    line-height: 1.9;
+hr {
+    border-color: rgba(220, 230, 215, 0.16);
 }
-
-/* Widget labels */
-
-.stApp [data-testid="stWidgetLabel"] p {
-    color: #FFFFFF !important;
-}
-
 
 /* ==========================================
-   📄 RESUME UPLOAD SECTION
+   FILE UPLOADER
 ========================================== */
 
 [data-testid="stFileUploader"] {
-    background: rgba(255,255,255,0.97) !important;
-    border: 2px dashed #A78BFA;
-    border-radius: 18px;
+    background: #F2F1EA;
     padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #D5D9D0;
 }
-
-/* Dark text inside white upload box */
 
 [data-testid="stFileUploader"] label,
-[data-testid="stFileUploader"] p,
-[data-testid="stFileUploader"] span,
 [data-testid="stFileUploader"] small {
-    color: #26334A !important;
+    color: #303A33 !important;
 }
-
-/* Upload button */
 
 [data-testid="stFileUploader"] button {
-    color: #26334A !important;
-    border: 1px solid #D1D5DB;
+    background: #526B55 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 7px;
 }
 
+[data-testid="stFileUploader"] button:hover {
+    background: #405641 !important;
+}
 
 /* ==========================================
-   🔵 INFORMATION MESSAGE
-========================================== */
-
-[data-testid="stAlert"] {
-    background-color: #E8F1FF !important;
-    border-radius: 12px;
-}
-
-/* Blue text in information boxes */
-
-[data-testid="stAlert"] p,
-[data-testid="stAlert"] span {
-    color: #174EA6 !important;
-}
-
-
-/* ==========================================
-   ✅ SUCCESS MESSAGE
-========================================== */
-
-[data-testid="stAlert"][kind="success"] p,
-[data-testid="stAlert"][kind="success"] span {
-    color: #146C43 !important;
-}
-
-
-/* ==========================================
-   💜 ANALYZE BUTTON
+   BUTTONS
 ========================================== */
 
 .stButton > button {
-    background: linear-gradient(
-        90deg,
-        #7C3AED,
-        #0D9488
-    );
-
-    color: #FFFFFF !important;
-    border: none;
-    border-radius: 12px;
-
-    min-height: 48px;
-    font-weight: 700;
-
-    transition: 0.3s ease;
+    background: #71866B;
+    color: #FFFFFF;
+    border: 1px solid #879B80;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-weight: 600;
+    transition: all 0.25s ease;
 }
 
 .stButton > button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 22px rgba(124,58,237,0.35);
-    color: #FFFFFF !important;
+    background: #879B80;
+    color: #172019;
+    border-color: #A9BBA0;
 }
 
+.stButton > button:focus {
+    box-shadow: 0 0 0 2px #B7C8AE;
+}
 
 /* ==========================================
-   📂 EXPANDER SECTIONS
+   CARDS AND CONTAINERS
+========================================== */
+
+[data-testid="stMetric"] {
+    background: #29332D;
+    border: 1px solid rgba(190, 205, 185, 0.18);
+    border-radius: 12px;
+    padding: 18px;
+}
+
+[data-testid="stMetricLabel"] {
+    color: #C3CEC0 !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: #E4EBDD !important;
+}
+
+/* ==========================================
+   EXPANDERS
 ========================================== */
 
 [data-testid="stExpander"] {
-    background: rgba(255,255,255,0.10);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 12px;
+    background: #252F29;
+    border: 1px solid rgba(190, 205, 185, 0.18);
+    border-radius: 10px;
+    margin-bottom: 12px;
 }
 
-[data-testid="stExpander"] summary,
-[data-testid="stExpander"] summary p {
-    color: #FFFFFF !important;
+[data-testid="stExpander"] summary {
+    color: #F2F1EA !important;
+    font-weight: 600;
 }
 
+[data-testid="stExpander"] summary:hover {
+    color: #B8CBAF !important;
+}
 
 /* ==========================================
-   📊 PROGRESS BAR
+   CHECKBOXES
 ========================================== */
+
+[data-testid="stCheckbox"] label {
+    color: #E2E5DE !important;
+}
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.stProgress > div > div > div {
+    background-color: #8FA68A;
+}
 
 .stProgress > div > div {
-    background-color: #14B8A6;
+    background-color: #414D43;
+    border-radius: 10px;
 }
-
 
 /* ==========================================
-   🌟 FOOTER
+   INPUT FIELDS
 ========================================== */
 
-[data-testid="stCaptionContainer"] {
-    color: #E2E8F0 !important;
+.stTextInput input,
+.stTextArea textarea,
+.stSelectbox div[data-baseweb="select"] {
+    background-color: #F2F1EA !important;
+    color: #263129 !important;
+    border-radius: 8px;
+    border: 1px solid #C8D0C4 !important;
 }
 
-[data-testid="stCaptionContainer"] p {
-    color: #E2E8F0 !important;
+.stTextInput input:focus,
+.stTextArea textarea:focus {
+    border-color: #8FA68A !important;
 }
-
 
 /* ==========================================
-   ➖ DIVIDERS
+   CHAT INTERFACE
 ========================================== */
 
-hr {
-    border-color: rgba(255,255,255,0.30) !important;
+[data-testid="stChatMessage"] {
+    background: #29342D;
+    border: 1px solid rgba(190, 205, 185, 0.15);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
 }
 
+[data-testid="stChatInput"] {
+    background: #F2F1EA;
+    border-radius: 10px;
+}
+
+[data-testid="stChatInput"] textarea {
+    color: #263129 !important;
+}
 
 /* ==========================================
-   📱 RESPONSIVE DESIGN
+   ALERT MESSAGES
 ========================================== */
 
-@media (max-width: 700px) {
+[data-testid="stAlert"] {
+    border-radius: 10px;
+    border: 1px solid rgba(190, 205, 185, 0.2);
+}
 
+/* ==========================================
+   DATAFRAMES AND TABLES
+========================================== */
+
+[data-testid="stDataFrame"] {
+    border: 1px solid rgba(190, 205, 185, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ==========================================
+   LINKS
+========================================== */
+
+a {
+    color: #B5C9A9 !important;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #D5E2CB !important;
+    text-decoration: underline;
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer {
+    visibility: hidden;
+}
+
+.footer {
+    text-align: center;
+    color: #AEB9AC;
+    font-size: 13px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #202824;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #657A64;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8FA68A;
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media screen and (max-width: 768px) {
     .hero-container {
-        padding: 25px;
+        padding: 22px;
     }
 
     .hero-container h1 {
-        font-size: 32px !important;
+        font-size: 2rem;
     }
-
-    .hero-features {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 430px) {
 
     .hero-features {
         grid-template-columns: 1fr;
     }
+
+    .feature-item {
+        padding: 16px;
+    }
+
+    .block-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
-
-/* =====================================
-   FIX LEARNING ROADMAP TEXT VISIBILITY
-===================================== */
-
-/* Expander heading */
-[data-testid="stExpander"] details > summary {
-    background: rgba(30, 41, 90, 0.95) !important;
-    color: #FFFFFF !important;
-    border: 1px solid rgba(255,255,255,0.35) !important;
-    border-radius: 12px !important;
-}
-
-/* Expander heading text */
-[data-testid="stExpander"] details > summary p,
-[data-testid="stExpander"] details > summary span,
-[data-testid="stExpander"] details > summary div {
-    color: #FFFFFF !important;
-}
-
-/* Expanded content area */
-[data-testid="stExpander"] details > div {
-    background: rgba(35, 45, 105, 0.90) !important;
-    color: #FFFFFF !important;
-}
-
-/* All text inside roadmap expanders */
-[data-testid="stExpander"] p,
-[data-testid="stExpander"] label,
-[data-testid="stExpander"] span,
-[data-testid="stExpander"] li {
-    color: #FFFFFF !important;
-}
-
-/* Learning resource links */
-[data-testid="stExpander"] a {
-    color: #7DD3FC !important;
-    font-weight: 600 !important;
-    text-decoration: underline !important;
-}
-
-/* Checkbox labels */
-[data-testid="stExpander"] [data-testid="stWidgetLabel"] p {
-    color: #FFFFFF !important;
-}
-
-/* Hover effect */
-[data-testid="stExpander"] details > summary:hover {
-    background: rgba(80, 80, 170, 0.95) !important;
-}
-
-/* Rounded corners */
-[data-testid="stExpander"] details {
-    border: 1px solid rgba(255,255,255,0.3) !important;
-    border-radius: 12px !important;
-    overflow: hidden;
-}
-
-
-/* =====================================
-   CHATBOT INPUT TEXT FIX
-===================================== */
-
-/* Chat input box */
-[data-testid="stChatInput"] textarea {
-    color: #1F2937 !important;
-    background-color: #FFFFFF !important;
-    -webkit-text-fill-color: #1F2937 !important;
-    caret-color: #1F2937 !important;
-    font-size: 16px !important;
-}
-
-/* Placeholder text */
-[data-testid="stChatInput"] textarea::placeholder {
-    color: #64748B !important;
-    -webkit-text-fill-color: #64748B !important;
-    opacity: 1 !important;
-}
-
-/* =====================================
-   CHATBOT RESPONSE TEXT FIX
-===================================== */
-
-/* Assistant response text */
-[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
-[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] li,
-[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] span {
-    color: #FFFFFF !important;
-}
-
-/* Response headings */
-[data-testid="stChatMessage"] h1,
-[data-testid="stChatMessage"] h2,
-[data-testid="stChatMessage"] h3,
-[data-testid="stChatMessage"] h4 {
-    color: #FFFFFF !important;
-}
-
-/* Response tables */
-[data-testid="stChatMessage"] table,
-[data-testid="stChatMessage"] th,
-[data-testid="stChatMessage"] td {
-    color: #FFFFFF !important;
-    border-color: rgba(255,255,255,0.4) !important;
-}
-
-/* Table headings */
-[data-testid="stChatMessage"] th {
-    background-color: rgba(255,255,255,0.15) !important;
-    font-weight: 700 !important;
-}
-
-/* Links inside chatbot responses */
-[data-testid="stChatMessage"] a {
-    color: #7DD3FC !important;
-    text-decoration: underline !important;
-}
-
-/* Code blocks */
-[data-testid="stChatMessage"] pre,
-[data-testid="stChatMessage"] code {
-    color: #FFFFFF !important;
-}
-
-/* =====================================
-   CHATBOT VISUAL IMPROVEMENT
-===================================== */
-
-[data-testid="stChatInput"] {
-    border-radius: 14px !important;
-}
-
-[data-testid="stChatMessage"] {
-    border-radius: 14px !important;
-}
- 
