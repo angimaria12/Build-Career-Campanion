@@ -1,24 +1,22 @@
-# 🚀 Build Career Companion
+# Build Career Companion
 
 ![Banner](images/banner.png)
 
-**Build Career Companion** is a modern web application that helps you plan, track, and accelerate your career growth. It provides tools for skill mapping, goal setting, and progress visualization.
+**Build Career Companion** is a modern web application that helps you plan, track, and accelerate your career growth. It offers tools for skill mapping, goal setting, progress visualization, and mentor matching.
 
 ---
 
 ## ✨ Features
 
-- 🎯 **Goal Management** – Set short‑term and long‑term career goals.
-- 📈 **Progress Dashboard** – Visualize your skill development over time.
+- 🎯 **Goal Management** – Define short‑term and long‑term career objectives.
+- 📈 **Progress Dashboard** – Visualize skill development and learning milestones.
 - 📚 **Learning Resources** – Curated articles, courses, and books.
-- 🤝 **Mentor Matching** – Connect with mentors based on your interests.
-- 📊 **Analytics** – Track time spent on learning activities.
+- 🤝 **Mentor Matching** – Connect with mentors aligned to your interests.
+- 📊 **Analytics** – Track time spent on learning activities and view trends.
 
 ---
 
 ## 📸 Screenshots
-
-> Add screenshots to the `images/` directory and reference them below.
 
 | Feature | Screenshot |
 |---------|------------|
@@ -35,12 +33,14 @@
 git clone https://github.com/yourusername/build-career-companion.git
 cd build-career-companion
 
-# Install dependencies (example for a Node.js project)
+# Install dependencies (Node.js example)
 npm install
 
 # Run the development server
 npm run dev
 ```
+
+> **Note**: Adjust the commands if the project uses a different stack (e.g., Python, Ruby).
 
 ---
 
@@ -48,7 +48,7 @@ npm run dev
 
 1. Open the app at `http://localhost:3000`.
 2. Create your profile and set your career goals.
-3. Track progress daily and explore recommended learning resources.
+3. Track daily progress and explore recommended learning resources.
 
 ---
 
