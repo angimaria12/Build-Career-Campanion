@@ -94,23 +94,22 @@ uploaded_file = st.file_uploader(
     key="resume_uploader"
 )
 
-
-if uploaded_file:
-
+if uploaded_file is not None:
     st.success("Resume uploaded successfully!")
 
     if st.button("Analyze My Resume", type="primary"):
-
-        # Clear any previous candidate analysis before checking the new PDF.
+        # Clear the previous analysis before processing a new upload.
         st.session_state.career_report = None
         st.session_state.career_context = None
         st.session_state.chat_history = []
 
-        try:
-            with st.spinner(
-                "AI is analyzing your resume..."
-            ):
+        # Clear old roadmap checkbox values from the previous resume.
+        for key in list(st.session_state.keys()):
+            if key.startswith("roadmap_task_"):
+                del st.session_state[key]
 
+        try:
+            with st.spinner("AI is analyzing your resume..."):
                 resume_text = extract_resume_text(uploaded_file)
 
                 if not resume_text or len(resume_text.strip()) < 100:
@@ -129,323 +128,161 @@ if uploaded_file:
 
                 report = analyze_resume(resume_text)
 
-                # Store career report for follow-up chatbot
-
+            # Save the report in session state. It remains available
+            # when Streamlit reruns after a checkbox is clicked.
             st.session_state.career_report = report
-
-            st.session_state.career_context = report.model_dump_json(
-            indent=2
-              )
-
+            st.session_state.career_context = report.model_dump_json(indent=2)
             st.session_state.chat_history = []
-
             st.success("Resume analysis completed!")
-
-            # Candidate summary
-
-            st.header("👤 Candidate Profile")
-
-            st.write(report.candidate_summary)
-
-            # Education
-
-            st.header("🎓 Education")
-
-            for item in report.education:
-                st.write("•", item)
-
-            # Technical skills
-
-            st.header("💻 Technical Skills")
-
-            st.write(
-                ", ".join(report.technical_skills)
-            )
-
-            # Soft skills
-
-            st.header("🤝 Soft Skills")
-
-            st.write(
-                ", ".join(report.soft_skills)
-            )
-
-            # Projects and experience
-
-            st.header("📂 Experience and Projects")
-
-            for item in report.experience_and_projects:
-                st.write("•", item)
-
-            # Job recommendations
-
-            st.divider()
-
-            st.header("💼 Recommended Job Roles")
-
-            for job in report.suitable_jobs:
-
-                with st.expander(
-                    f"{job.role} - {job.match_score}% Match"
-                ):
-
-                    st.progress(
-                        min(max(job.match_score, 0), 100) / 100
-                    )
-
-                    st.write("**Why this role suits you:**")
-                    st.write(job.reason)
-
-                    st.write("**Required skills:**")
-                    st.write(", ".join(job.required_skills))
-
-                    st.write("**Skills to improve:**")
-                    st.write(", ".join(job.missing_skills))
-
-            # Improvement suggestions
-
-            st.divider()
-
-            st.header("🚀 Career Improvement Suggestions")
-
-            for item in report.improvement_suggestions:
-                st.write("•", item)
-
-            # =====================================
-            # LEARNING ROADMAP WITH OFFICIAL LINKS
-            # =====================================
-
-            st.divider()
-
-            st.header("📚 Your Personalized Learning Roadmap")
-
-            st.write(
-                "Follow these recommended learning steps, "
-                "explore the official resources and track "
-                "your progress as you learn!"
-            )
-
-            # Official learning resources
-
-            learning_resources = {
-                "aws": [
-                    (
-                        "☁️ AWS Cloud Practitioner - Official Training",
-                        "https://aws.amazon.com/training/digital/"
-                    ),
-                    (
-                        "📘 AWS Cloud Practitioner Study Guide",
-                        "https://d1.awsstatic.com/training-and-certification/ramp-up_guides/Ramp-Up_Guide_CloudPractitioner.pdf"
-                    )
-                ],
-
-                "azure": [
-                    (
-                        "☁️ Azure Fundamentals - Microsoft Learn",
-                        "https://learn.microsoft.com/en-us/training/azure/"
-                    ),
-                    (
-                        "🎓 Azure Training and Certifications",
-                        "https://azure.microsoft.com/en-in/resources/training-and-certifications/"
-                    )
-                ],
-
-                "tensorflow": [
-                    (
-                        "🧠 TensorFlow Official Tutorials",
-                        "https://www.tensorflow.org/tutorials"
-                    )
-                ],
-
-                "pytorch": [
-                    (
-                        "🔥 PyTorch Official Tutorials",
-                        "https://pytorch.org/tutorials/"
-                    )
-                ],
-
-                "sql": [
-                    (
-                        "💻 MySQL Official Tutorial",
-                        "https://dev.mysql.com/doc/mysql-tutorial-excerpt/8.0/en/"
-                    ),
-                    (
-                        "📘 PostgreSQL Official Tutorial",
-                        "https://www.postgresql.org/docs/current/tutorial.html"
-                    )
-                ],
-
-                "power bi": [
-                    (
-                        "📊 Power BI - Microsoft Learn",
-                        "https://learn.microsoft.com/en-us/training/powerplatform/power-bi"
-                    )
-                ],
-
-                "docker": [
-                    (
-                        "🐳 Docker Official Getting Started Guide",
-                        "https://docs.docker.com/get-started/"
-                    )
-                ],
-
-                "mlflow": [
-                    (
-                        "🤖 MLflow Official Documentation",
-                        "https://mlflow.org/docs/latest/"
-                    )
-                ],
-
-                "github actions": [
-                    (
-                        "🐙 GitHub Actions Documentation",
-                        "https://docs.github.com/en/actions"
-                    )
-                ],
-
-                "kaggle": [
-                    (
-                        "🏆 Kaggle Learn",
-                        "https://www.kaggle.com/learn"
-                    )
-                ],
-
-                "flask": [
-                    (
-                        "🌐 Flask Official Quickstart",
-                        "https://flask.palletsprojects.com/en/stable/quickstart/"
-                    )
-                ]
-            }
-
-            # Match roadmap topics with learning links
-
-            def get_learning_links(roadmap_item):
-
-                item_lower = roadmap_item.lower()
-
-                matched_links = []
-
-                for keyword, links in learning_resources.items():
-
-                    if keyword in item_lower:
-
-                        matched_links.extend(links)
-
-                # Include general cloud resources
-                if "cloud" in item_lower:
-
-                    for keyword in ["aws", "azure"]:
-
-                        for link in learning_resources[keyword]:
-
-                            if link not in matched_links:
-                                matched_links.append(link)
-
-                return matched_links
-
-            # Display roadmap and follow-up checklist
-
-            total_tasks = len(report.learning_roadmap)
-
-            for index, item in enumerate(
-                report.learning_roadmap, 1
-            ):
-
-                with st.expander(
-                    f"📌 Step {index}: {item}",
-                    expanded=True
-                ):
-
-                    st.checkbox(
-                        "Mark this learning task as completed ✅",
-                        key=f"roadmap_task_{index}"
-                    )
-
-                    st.write("📖 Recommended Learning Resources:")
-
-                    links = get_learning_links(item)
-
-                    if links:
-
-                        for title, url in links:
-
-                            st.markdown(
-                                f"🔗 [{title}]({url})"
-                            )
-
-                    else:
-
-                        st.info(
-                            "Explore the official documentation "
-                            "for the technologies mentioned in this step."
-                        )
-
-            # Learning progress tracker
-
-            st.divider()
-
-            st.subheader("🎯 Your Learning Progress")
-
-            completed_tasks = sum(
-                st.session_state.get(
-                    f"roadmap_task_{index}", False
-                )
-                for index in range(1, total_tasks + 1)
-            )
-
-            if total_tasks > 0:
-
-                progress_percentage = (
-                    completed_tasks / total_tasks
-                )
-
-                st.progress(progress_percentage)
-
-                st.write(
-                    f"✅ Completed: {completed_tasks} / {total_tasks} tasks"
-                )
-
-                st.write(
-                    f"📊 Overall Progress: "
-                    f"{progress_percentage * 100:.0f}%"
-                )
-
-                if completed_tasks == total_tasks:
-
-                    st.success(
-                        "🎉 Congratulations! You have completed "
-                        "your entire learning roadmap!"
-                    )
-
-                elif completed_tasks > 0:
-
-                    st.info(
-                        "🚀 Great progress! Keep learning "
-                        "and complete your remaining tasks."
-                    )
-
-                else:
-
-                    st.info(
-                        "🌱 Your learning journey starts here. "
-                        "Complete your first task!"
-                    )
 
         except Exception as e:
             st.error(f"Something went wrong: {e}")
 
 else:
-
     st.info("Please upload your resume to get started.")
 
-st.divider()
 
+# Render the saved report OUTSIDE the Analyze button block.
+# This is important: Streamlit reruns the script whenever a checkbox changes.
+if st.session_state.career_report is not None:
+    report = st.session_state.career_report
+
+    # Candidate summary
+    st.header("👤 Candidate Profile")
+    st.write(report.candidate_summary)
+
+    # Education
+    st.header("🎓 Education")
+    for item in report.education:
+        st.write("•", item)
+
+    # Technical skills
+    st.header("💻 Technical Skills")
+    st.write(", ".join(report.technical_skills))
+
+    # Soft skills
+    st.header("🤝 Soft Skills")
+    st.write(", ".join(report.soft_skills))
+
+    # Projects and experience
+    st.header("📂 Experience and Projects")
+    for item in report.experience_and_projects:
+        st.write("•", item)
+
+    # Job recommendations
+    st.divider()
+    st.header("💼 Recommended Job Roles")
+    for job in report.suitable_jobs:
+        with st.expander(f"{job.role} - {job.match_score}% Match"):
+            st.progress(min(max(job.match_score, 0), 100) / 100)
+            st.write("**Why this role suits you:**")
+            st.write(job.reason)
+            st.write("**Required skills:**")
+            st.write(", ".join(job.required_skills))
+            st.write("**Skills to improve:**")
+            st.write(", ".join(job.missing_skills))
+
+    # Improvement suggestions
+    st.divider()
+    st.header("🚀 Career Improvement Suggestions")
+    for item in report.improvement_suggestions:
+        st.write("•", item)
+
+    # Learning roadmap resources
+    st.divider()
+    st.header("📚 Your Personalized Learning Roadmap")
+    st.write(
+        "Follow these recommended learning steps, explore the official "
+        "resources and track your progress as you learn!"
+    )
+
+    learning_resources = {
+        "aws": [
+            ("☁️ AWS Cloud Practitioner - Official Training", "https://aws.amazon.com/training/digital/"),
+            ("📘 AWS Cloud Practitioner Study Guide", "https://d1.awsstatic.com/training-and-certification/ramp-up_guides/Ramp-Up_Guide_CloudPractitioner.pdf")
+        ],
+        "azure": [
+            ("☁️ Azure Fundamentals - Microsoft Learn", "https://learn.microsoft.com/en-us/training/azure/"),
+            ("🎓 Azure Training and Certifications", "https://azure.microsoft.com/en-in/resources/training-and-certifications/")
+        ],
+        "tensorflow": [("🧠 TensorFlow Official Tutorials", "https://www.tensorflow.org/tutorials")],
+        "pytorch": [("🔥 PyTorch Official Tutorials", "https://pytorch.org/tutorials/")],
+        "sql": [
+            ("💻 MySQL Official Tutorial", "https://dev.mysql.com/doc/mysql-tutorial-excerpt/8.0/en/"),
+            ("📘 PostgreSQL Official Tutorial", "https://www.postgresql.org/docs/current/tutorial.html")
+        ],
+        "power bi": [("📊 Power BI - Microsoft Learn", "https://learn.microsoft.com/en-us/training/powerplatform/power-bi")],
+        "docker": [("🐳 Docker Official Getting Started Guide", "https://docs.docker.com/get-started/")],
+        "mlflow": [("🤖 MLflow Official Documentation", "https://mlflow.org/docs/latest/")],
+        "github actions": [("🐙 GitHub Actions Documentation", "https://docs.github.com/en/actions")],
+        "kaggle": [("🏆 Kaggle Learn", "https://www.kaggle.com/learn")],
+        "flask": [("🌐 Flask Official Quickstart", "https://flask.palletsprojects.com/en/stable/quickstart/")]
+    }
+
+    def get_learning_links(roadmap_item):
+        item_lower = roadmap_item.lower()
+        matched_links = []
+        for keyword, links in learning_resources.items():
+            if keyword in item_lower:
+                matched_links.extend(links)
+        if "cloud" in item_lower:
+            for keyword in ["aws", "azure"]:
+                for link in learning_resources[keyword]:
+                    if link not in matched_links:
+                        matched_links.append(link)
+        return matched_links
+
+    total_tasks = len(report.learning_roadmap)
+
+    for index, item in enumerate(report.learning_roadmap, 1):
+        with st.expander(f"📌 Step {index}: {item}", expanded=True):
+            # The checkbox value is retained in session_state across reruns.
+            st.checkbox(
+                "Mark this learning task as completed ✅",
+                key=f"roadmap_task_{index}"
+            )
+            st.write("📖 Recommended Learning Resources:")
+            links = get_learning_links(item)
+            if links:
+                for title, url in links:
+                    st.markdown(f"🔗 [{title}]({url})")
+            else:
+                st.info(
+                    "Explore the official documentation for the "
+                    "technologies mentioned in this step."
+                )
+
+    # Progress is recalculated on every Streamlit rerun.
+    st.divider()
+    st.subheader("🎯 Your Learning Progress")
+
+    completed_tasks = sum(
+        bool(st.session_state.get(f"roadmap_task_{index}", False))
+        for index in range(1, total_tasks + 1)
+    )
+
+    if total_tasks > 0:
+        progress_percentage = completed_tasks / total_tasks
+        st.progress(progress_percentage)
+        st.write(f"✅ Completed: {completed_tasks} / {total_tasks} tasks")
+        st.write(f"📊 Overall Progress: {progress_percentage * 100:.0f}%")
+
+        if completed_tasks == total_tasks:
+            st.success(
+                "🎉 Congratulations! You have completed your entire learning roadmap!"
+            )
+        elif completed_tasks > 0:
+            st.info("🚀 Great progress! Keep learning and complete your remaining tasks.")
+        else:
+            st.info("🌱 Your learning journey starts here. Complete your first task!")
+    else:
+        st.info("No learning roadmap tasks were generated for this resume.")
+
+st.divider()
 st.caption(
     "Career Companion | AI-based career guidance. "
     "Recommendations are suggestions, not hiring guarantees."
 )
-
 
 
 # =====================================
