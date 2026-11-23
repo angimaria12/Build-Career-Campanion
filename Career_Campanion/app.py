@@ -1,9 +1,17 @@
 from langchain_groq import ChatGroq
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
+from utils.resume_validator import is_resume
 
 import streamlit as st
 import os
 from dotenv import load_dotenv
+
+st.set_page_config(
+    page_title="Career Companion",
+    page_icon="🎯",
+    layout="wide"
+)
+
 
 # Load environment variables
 load_dotenv()
@@ -17,15 +25,6 @@ except (FileNotFoundError, KeyError):
 if not api_key:
     api_key = os.getenv("GROQ_API_KEY")
 
-    # Initialize Career Chatbot
-
-chatbot = ChatGroq(
-    model="openai/gpt-oss-120b",
-    temperature=0.4,
-    api_key=api_key
-)
-
-
 # Check API Key
 if not api_key:
     st.error("Please configure your GROQ API key.")
@@ -34,15 +33,16 @@ if not api_key:
 # Set API Key
 os.environ["GROQ_API_KEY"] = api_key
 
+# Initialize Career Chatbot
+chatbot = ChatGroq(
+    model="openai/gpt-oss-120b",
+    temperature=0.4,
+    api_key=api_key
+)
+
 from utils.resume_parser import extract_resume_text
 from utils.career_analyzer import analyze_resume
 
-
-st.set_page_config(
-    page_title="Career Companion",
-    page_icon="🎯",
-    layout="wide"
-)
 
 # Store chatbot conversation
 
@@ -86,12 +86,12 @@ st.html(hero_html)
 
 st.divider()
 
-
 # Resume upload
 
 uploaded_file = st.file_uploader(
-    "Upload your Resume (PDF)",
-    type=["pdf"]
+    "Upload your Resume",
+    type=["pdf"],
+    key="resume_uploader"
 )
 
 
@@ -101,14 +101,31 @@ if uploaded_file:
 
     if st.button("Analyze My Resume", type="primary"):
 
+        # Clear any previous candidate analysis before checking the new PDF.
+        st.session_state.career_report = None
+        st.session_state.career_context = None
+        st.session_state.chat_history = []
+
         try:
             with st.spinner(
                 "AI is analyzing your resume..."
             ):
 
-                resume_text = extract_resume_text(
-                    uploaded_file
-                )
+                resume_text = extract_resume_text(uploaded_file)
+
+                if not resume_text or len(resume_text.strip()) < 100:
+                    st.error(
+                        "Unable to read the PDF. "
+                        "Please upload a readable resume PDF."
+                    )
+                    st.stop()
+
+                if not is_resume(resume_text):
+                    st.error(
+                        "Invalid PDF! Please provide a related PDF "
+                        "(like a resume PDF) to continue."
+                    )
+                    st.stop()
 
                 report = analyze_resume(resume_text)
 
@@ -599,3 +616,4 @@ else:
         "📄 Please upload and analyse your resume "
         "to start chatting with your Career AI Assistant."
     )
+
