@@ -18,11 +18,27 @@
 
 ## 📸 Screenshots
 
-| Feature | Screenshot |
-|---------|------------|
-| Home Dashboard | ![Home Dashboard](images/home.png) |
-| Goal Tracker | ![Goal Tracker](images/goal.png) |
-| Mentor Matching | ![Mentor Matching](images/mentor.png) |
+
+## Application Screenshots
+
+### 1. AI Career Assistant
+![AI Career Assistant](Screenshots/AI%20Career%20Assistant.png)
+
+### 2. Career Companion
+![Career Companion](Screenshots/Career%20Companion.png)
+
+### 3. Learning Progress
+![Learning Progress](Screenshots/Learning%20Progress.png)
+
+### 4. Personalized Learning Roadmap
+![Personalized Learning Roadmap](Screenshots/Personalized%20Learning%20Roadmap.png)
+
+### 5. Recommended Job Roles
+![Recommended Job Roles](Screenshots/Recommended%20Job%20Roles.png)
+
+### 6. Resume Upload
+![Resume Upload](Screenshots/Resume%20Upload.png)
+
 
 ---
 
