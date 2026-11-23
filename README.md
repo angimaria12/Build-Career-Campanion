@@ -19,25 +19,26 @@
 ## 📸 Screenshots
 
 
+
 ## Application Screenshots
 
 ### 1. AI Career Assistant
-![AI Career Assistant](Screenshots/AI%20Career%20Assistant.png)
+![AI Career Assistant](./Screenshots/AI%20Career%20Assistant.png)
 
 ### 2. Career Companion
-![Career Companion](Screenshots/Career%20Companion.png)
+![Career Companion](./Screenshots/Career%20Companion.png)
 
 ### 3. Learning Progress
-![Learning Progress](Screenshots/Learning%20Progress.png)
+![Learning Progress](./Screenshots/Learning%20Progress.png)
 
 ### 4. Personalized Learning Roadmap
-![Personalized Learning Roadmap](Screenshots/Personalized%20Learning%20Roadmap.png)
+![Personalized Learning Roadmap](./Screenshots/Personalized%20Learning%20Roadmap.png)
 
 ### 5. Recommended Job Roles
-![Recommended Job Roles](Screenshots/Recommended%20Job%20Roles.png)
+![Recommended Job Roles](./Screenshots/Recommended%20Job%20Roles.png)
 
 ### 6. Resume Upload
-![Resume Upload](Screenshots/Resume%20Upload.png)
+![Resume Upload](./Screenshots/Resume%20Upload.png)
 
 
 ---
