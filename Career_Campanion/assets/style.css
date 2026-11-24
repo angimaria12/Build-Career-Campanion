@@ -131,20 +131,30 @@ hr {
     border: 1px solid #D5D9D0;
 }
 
+/* MAKE TEXT INSIDE WHITE UPLOAD BOX BLACK */
+
+[data-testid="stFileUploader"],
 [data-testid="stFileUploader"] label,
-[data-testid="stFileUploader"] small {
-    color: #303A33 !important;
+[data-testid="stFileUploader"] section,
+[data-testid="stFileUploader"] span,
+[data-testid="stFileUploader"] small,
+[data-testid="stFileUploader"] div,
+[data-testid="stFileUploader"] p {
+    color: #000000 !important;
 }
+
+/* UPLOAD BUTTON */
 
 [data-testid="stFileUploader"] button {
     background: #526B55 !important;
-    color: white !important;
+    color: #000000 !important;
     border: none !important;
     border-radius: 7px;
 }
 
 [data-testid="stFileUploader"] button:hover {
     background: #405641 !important;
+    color: #000000 !important;
 }
 
 /* ==========================================
@@ -266,10 +276,13 @@ hr {
     border-radius: 10px;
 }
 
-[data-testid="stChatInput"] textarea {
-    color: #263129 !important;
-}
+/* AI ASSISTANT CHAT INPUT TEXT */
 
+[data-testid="stChatInput"] textarea {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    caret-color: #FFFFFF !important;
+}
 /* ==========================================
    ALERT MESSAGES
 ========================================== */
@@ -365,4 +378,27 @@ footer {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+}
+
+
+/* FIX RESUME FILE NAME AND SIZE PREVIEW */
+
+[data-testid="stFileUploader"] [data-testid="stFileUploaderFile"],
+[data-testid="stFileUploader"] [data-testid="stFileUploaderFile"] *,
+[data-testid="stFileUploader"] [data-testid="stFileUploaderFileName"],
+[data-testid="stFileUploader"] [data-testid="stFileUploaderFileName"] * {
+    background-color: #F2F1EA !important;
+    color: #000000 !important;
+}
+
+/* Uploaded file preview text */
+[data-testid="stFileUploader"] div[class*="uploadedFile"],
+[data-testid="stFileUploader"] div[class*="uploadedFile"] * {
+    color: #000000 !important;
+}
+
+/* Make only the upload area's text white */
+[data-testid="stFileUploader"] section,
+[data-testid="stFileUploader"] section * {
+    color: #FFFFFF !important;
 }
